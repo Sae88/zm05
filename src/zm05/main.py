@@ -30,3 +30,16 @@ def gcd(x: int, y: int):
     """
     typer.echo(mathtools.gcd(x, y))
 
+@app.command()
+def lcm(x: int, y: int): 
+    """
+    最小公倍数
+    """
+    typer.echo(mathtools.lcm(x, y))
+
+@app.command()
+def average():
+    n=input()
+    ave=[float(x) for x in n.split()]
+    return sum(ave)/ len(ave)
+print(average())
