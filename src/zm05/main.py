@@ -3,8 +3,9 @@ import datetime
 import typer
 
 from zm05 import mathtools
-
+from zm05 import test
 app = typer.Typer()
+
 
 
 @app.callback()
@@ -42,4 +43,13 @@ def average():
     n=input()
     ave=[float(x) for x in n.split()]
     return sum(ave)/ len(ave)
-print(average())
+#print(average())
+#%%
+@app.command()
+def hello(name : str = "sae"):
+    typer.echo(test.hello(name))
+#%%
+@app.command()
+def rain():
+    typer.echo(test.rain())
+# %%
