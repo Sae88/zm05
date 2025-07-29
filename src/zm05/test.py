@@ -1,25 +1,7 @@
 def hello(name : str) ->str :
     return f"hello, {name}"
 
-import typer
 
-import urllib.request
-import urllib.parse
-
-import json
-import re
-from datetime import datetime
-from typing import Optional
-
-app = typer.Typer()
-
-class NoAPIUmbrellaChecker:
-    def __init__(self):
-        pass
-    
-    def get_weather_from_demo(self, city="大阪"):
-        """デモ用の天気データ"""
-        import random
 
 
 #%%
@@ -31,10 +13,12 @@ import urllib.request
 import urllib.parse
 import pandas as pd
 import json
+from datetime import datetime
+from typing import Optional
 
 def check_rain( area_code="270000"):
-    # 気象庁の東京地方の天気予報ページ
-    #url = "https://www.jma.go.jp/bosai/forecast/data/forecast/{area_code}.json"
+    # 気象庁の天気予報ページ
+    
     url = f"https://www.jma.go.jp/bosai/forecast/data/forecast/{area_code}.json"
 
     try:
@@ -44,6 +28,15 @@ def check_rain( area_code="270000"):
         # 今日の降水確率を取得
         today_forecast = data[0]['timeSeries'][1]['areas'][0]['pops'][0]
         rain_prob = int(today_forecast) if today_forecast != '' else 0
+        #today_temp = data[0]['timeSeries'][2]
+
+        #min_temp = today_temp['tempsMin'][0] if today_temp['tempsMin'][0] != '' else "不明"
+        #max_temp = today_temp['tempsMax'][0] if today_temp['tempsMax'][0] != '' else "不明"
+            
+        
+        #print(f"今日の気温: 最低{min_temp}℃ / 最高{max_temp}℃")
+    #except (IndexError, KeyError):
+        #print("気温データが取得できませんでした")
         
         print(f"今日の降水確率: {rain_prob}%")
         
